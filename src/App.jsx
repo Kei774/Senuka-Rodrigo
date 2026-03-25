@@ -302,30 +302,6 @@ function ScrollBackdrop() {
     [0, 0.12, 0.92, 1],
     [0.2, 0.48, 0.48, 0.25],
   );
-  const signatureGlow = useTransform(
-    smoothScroll,
-    [0, 0.2, 1],
-    [0.3, 0.72, 0.86],
-  );
-  const penY = useTransform(
-    smoothScroll,
-    [0, 0.3, 0.58, 0.82, 1],
-    ["58%", "44%", "66%", "78%", "88%"],
-  );
-  const penX = useTransform(
-    smoothScroll,
-    [0, 0.3, 0.58, 0.82, 1],
-    ["56%", "51%", "44%", "56%", "62%"],
-  );
-
-  const strokeS = useTransform(smoothScroll, [0.02, 0.28, 1], [0, 1, 1]);
-  const strokeEnuka = useTransform(smoothScroll, [0.24, 0.62, 1], [0, 1, 1]);
-  const strokeUnderlineMain = useTransform(
-    smoothScroll,
-    [0.58, 0.96, 1],
-    [0, 1, 1],
-  );
-  const strokeDot = useTransform(smoothScroll, [0.95, 1], [0, 1]);
 
   return (
     <div className="scroll-bg" aria-hidden>
@@ -341,48 +317,6 @@ function ScrollBackdrop() {
         className="scroll-sweep"
         style={{ y: sweepY, opacity: sweepO }}
       />
-      <motion.div
-        className="signature-rail signature-rail-left"
-        style={{ opacity: signatureGlow }}>
-        <motion.div
-          className="signature-pen"
-          style={{ top: penY, left: penX }}
-        />
-        <svg
-          className="signature-svg"
-          viewBox="0 0 460 190"
-          preserveAspectRatio="xMidYMid meet">
-          <motion.path
-            d="M78 146 C 54 148, 40 136, 55 126 C 76 111, 133 118, 145 95 C 153 80, 138 70, 124 79 C 108 89, 108 109, 121 126 C 136 145, 168 148, 186 140"
-            className="signature-path"
-            style={{ pathLength: strokeS }}
-          />
-          <motion.path
-            d="M186 140 C 190 125, 200 121, 205 131 C 211 141, 198 146, 192 141 C 189 138, 206 127, 216 134 C 223 139, 228 136, 232 128 C 236 121, 243 121, 245 129 C 248 137, 251 143, 258 141 C 267 138, 271 128, 274 119 C 274 134, 277 143, 284 142 C 292 141, 297 130, 303 120 C 304 133, 308 141, 316 140"
-            className="signature-path"
-            style={{ pathLength: strokeEnuka }}
-          />
-          <motion.path
-            d="M316 140 C 274 144, 218 146, 160 145 C 114 144, 86 143, 74 146 C 62 150, 63 159, 77 160 C 95 161, 104 146, 93 136 C 83 127, 67 131, 66 142 C 64 156, 86 167, 116 168 C 178 170, 266 172, 354 179 C 392 182, 420 184, 438 186"
-            className="signature-path signature-path-underline"
-            style={{ pathLength: strokeUnderlineMain }}
-          />
-          <motion.path
-            d="M448 184 C 448 180, 454 180, 454 184 C 454 188, 448 188, 448 184"
-            className="signature-path signature-path-dot"
-            style={{ pathLength: strokeDot }}
-          />
-        </svg>
-      </motion.div>
-      <motion.div
-        className="signature-rail signature-rail-right"
-        style={{ opacity: signatureGlow }}>
-        <div className="random-line-field">
-          <span className="random-line random-line-a" />
-          <span className="random-line random-line-b" />
-          <span className="random-line random-line-c" />
-        </div>
-      </motion.div>
     </div>
   );
 }
