@@ -173,13 +173,6 @@ const TICKER_ITEMS = [
 ];
 
 /* ─────────────────────────────────────────
-   Signature paths
-───────────────────────────────────────── */
-const SIG_LETTERS =
-  "M 45,95 C 32,55 54,18 88,36 C 110,48 104,78 80,88 C 56,98 42,122 70,134 C 96,144 128,114 148,80 C 168,46 195,40 222,55 C 242,67 240,95 220,108 C 200,121 196,142 218,148 C 250,118 282,78 316,86 C 340,93 342,122 318,130 C 296,137 288,154 312,158 M 358,95 C 355,44 368,17 399,22 C 428,27 430,58 412,72 C 400,82 374,88 406,100 C 436,112 466,70 490,86 C 512,74 540,62 564,78 C 588,94 582,125 560,135 C 538,145 524,128 528,110 C 532,92 542,80 562,78 C 584,76 606,96 608,120 C 610,144 594,165 572,170 C 550,175 530,162 532,145 M 628,108 C 648,84 670,76 686,90 L 684,162 M 716,84 C 714,56 726,46 740,53 C 754,60 752,78 740,90 L 738,164";
-const SIG_UNDERLINE = "M 32,182 C 220,196 490,202 870,186";
-
-/* ─────────────────────────────────────────
    Components
 ───────────────────────────────────────── */
 function Preloader({ onDone }) {
@@ -330,11 +323,6 @@ function ScrollBackdrop() {
     [0.2, 0.48, 0.48, 0.25],
   );
 
-  // Signature draw progress
-  const sigProgress = useTransform(smooth, [0, 0.88], [0, 1]);
-  const underlineProgress = useTransform(smooth, [0.72, 0.96], [0, 1]);
-  const dotOpacity = useTransform(smooth, [0.38, 0.48], [0, 1]);
-
   return (
     <div className="scroll-bg" aria-hidden>
       <motion.div
@@ -349,39 +337,6 @@ function ScrollBackdrop() {
         className="scroll-sweep"
         style={{ y: sweepY, opacity: sweepO }}
       />
-
-      {/* Scroll-driven signature */}
-      <div className="signature-rail signature-rail-left">
-        <svg
-          className="signature-svg"
-          viewBox="0 0 900 200"
-          preserveAspectRatio="xMidYMid meet"
-          xmlns="http://www.w3.org/2000/svg">
-          <motion.path
-            className="signature-path"
-            d={SIG_LETTERS}
-            pathLength={1}
-            style={{ pathLength: sigProgress }}
-          />
-          <motion.circle
-            cx="740"
-            cy="66"
-            r="7"
-            fill="rgba(134,120,255,0.86)"
-            stroke="none"
-            style={{
-              opacity: dotOpacity,
-              filter: "drop-shadow(0 0 9px rgba(122,108,255,0.52))",
-            }}
-          />
-          <motion.path
-            className="signature-path signature-path-underline"
-            d={SIG_UNDERLINE}
-            pathLength={1}
-            style={{ pathLength: underlineProgress }}
-          />
-        </svg>
-      </div>
     </div>
   );
 }
@@ -507,7 +462,6 @@ function App() {
                   </a>
                 </div>
               </motion.div>
-              <span className="hero-scroll-hint">Scroll to explore</span>
             </section>
 
             {/* ── Ticker ── */}

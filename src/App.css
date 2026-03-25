@@ -134,42 +134,6 @@ p {
   will-change: transform;
 }
 
-/* ─── Signature Rail ─── */
-.signature-rail {
-  position: absolute;
-  top: 4vh;
-  bottom: 4vh;
-  width: min(16vw, 150px);
-  min-width: 98px;
-}
-
-.signature-rail-left {
-  left: max(1vw, 8px);
-}
-
-.signature-svg {
-  position: absolute;
-  inset: 0;
-  width: 250%;
-  height: 100%;
-  transform: rotate(90deg) translateX(16%);
-  transform-origin: center;
-}
-
-.signature-path {
-  fill: none;
-  stroke: rgba(128, 114, 255, 0.78);
-  stroke-width: 4.4;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  filter: drop-shadow(0 0 9px rgba(122, 108, 255, 0.5));
-}
-
-.signature-path-underline {
-  stroke-width: 4;
-  opacity: 0.85;
-}
-
 /* ─── Preloader ─── */
 .preloader {
   position: fixed;
@@ -423,20 +387,6 @@ main {
   display: flex;
   gap: 10px;
   flex-shrink: 0;
-}
-
-.hero-scroll-hint {
-  font-family: "Space Mono", monospace;
-  font-size: 0.56rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.24);
-  position: absolute;
-  bottom: 38px;
-  right: 52px;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  user-select: none;
 }
 
 /* ─── Ticker ─── */
@@ -963,10 +913,6 @@ main {
     align-items: flex-start;
     gap: 20px;
   }
-  .hero-scroll-hint {
-    display: none;
-  }
-
   .section {
     padding: 70px 20px;
   }
@@ -1025,9 +971,5 @@ main {
   .footer-top {
     flex-direction: column;
     align-items: flex-start;
-  }
-
-  .signature-rail {
-    display: none;
   }
 }
