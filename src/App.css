@@ -150,6 +150,82 @@ p {
   will-change: transform;
 }
 
+.side-strip {
+  position: absolute;
+  top: 4vh;
+  bottom: 4vh;
+  width: 34px;
+  overflow: hidden;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  background: linear-gradient(
+    180deg,
+    rgba(8, 23, 44, 0.22),
+    rgba(8, 23, 44, 0.06)
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 12%,
+    #000 88%,
+    transparent 100%
+  );
+}
+
+.side-strip-left {
+  left: max(1vw, 8px);
+}
+
+.side-strip-right {
+  right: max(1vw, 8px);
+}
+
+.side-strip-track {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  animation: sideTickerUp 24s linear infinite;
+}
+
+.side-strip-right .side-strip-track {
+  animation-name: sideTickerDown;
+}
+
+.side-strip-item {
+  font-family: "Space Mono", monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(125, 211, 252, 0.62);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  white-space: nowrap;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  text-shadow: 0 0 12px rgba(56, 189, 248, 0.28);
+}
+
+@keyframes sideTickerUp {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes sideTickerDown {
+  from {
+    transform: translateY(-50%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
 .signature-rail {
   position: absolute;
   top: 4vh;
@@ -344,7 +420,7 @@ p {
 .cursor-ring,
 .cursor-dot {
   position: fixed;
-  z-index: 80;
+  z-index: 120;
   pointer-events: none;
   transform: translate(-50%, -50%);
 }
@@ -1093,6 +1169,17 @@ main {
 
   .showcase-screen img {
     height: 34vh;
+  }
+
+  .side-strip {
+    width: 26px;
+    top: 7vh;
+    bottom: 7vh;
+  }
+
+  .side-strip-item {
+    font-size: 0.5rem;
+    letter-spacing: 0.1em;
   }
 
   .signature-rail {
