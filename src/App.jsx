@@ -283,6 +283,8 @@ function RoleModal({ open, onClose }) {
 
 function ScrollBackdrop() {
   const { scrollYProgress } = useScroll();
+  const sideInfoText =
+    "SENUKA RODRIGO • FULL STACK DEVELOPER • KALUTHARA, SRI LANKA • REACT • NODE.JS • JAVA • PYTHON • GITHUB: KEI774 • ";
   const smoothScroll = useSpring(scrollYProgress, {
     stiffness: 88,
     damping: 24,
@@ -317,6 +319,18 @@ function ScrollBackdrop() {
         className="scroll-sweep"
         style={{ y: sweepY, opacity: sweepO }}
       />
+      <div className="side-strip side-strip-left">
+        <div className="side-strip-track">
+          <span className="side-strip-item">{sideInfoText}</span>
+          <span className="side-strip-item">{sideInfoText}</span>
+        </div>
+      </div>
+      <div className="side-strip side-strip-right">
+        <div className="side-strip-track">
+          <span className="side-strip-item">{sideInfoText}</span>
+          <span className="side-strip-item">{sideInfoText}</span>
+        </div>
+      </div>
     </div>
   );
 }
