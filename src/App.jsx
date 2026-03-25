@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   AnimatePresence,
   motion,
@@ -177,6 +177,8 @@ const TICKER_ITEMS = [
 ───────────────────────────────────────── */
 function Preloader({ onDone }) {
   const [pct, setPct] = useState(0);
+  const [launch, setLaunch] = useState(false);
+  const didFinishRef = useRef(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -188,24 +190,61 @@ function Preloader({ onDone }) {
         return p + 2;
       });
     }, 40);
-    const done = setTimeout(onDone, 2600);
     return () => {
       clearInterval(timer);
-      clearTimeout(done);
     };
-  }, [onDone]);
+  }, []);
+
+  useEffect(() => {
+    if (pct < 100 || launch) return;
+    setLaunch(true);
+    // Fallback in case animation completion doesn't fire on low-performance devices.
+    const done = setTimeout(() => {
+      if (didFinishRef.current) return;
+      didFinishRef.current = true;
+      onDone();
+    }, 950);
+    return () => clearTimeout(done);
+  }, [pct, launch, onDone]);
+
+  const drawProgress = Math.min(Math.max(pct / 100, 0), 1);
 
   return (
     <motion.div
       className="preloader"
       exit={{ opacity: 0, y: "-100%", transition: { duration: 0.8 } }}>
       <div className="preloader-grid" />
-      <HeartPulse className="preloader-heart" />
       <p className="mono-tag">Senuka Rodrigo — Portfolio</p>
-      <h1 className="brand">SENUKA</h1>
-      <div className="loader-track">
-        <motion.div className="loader-fill" animate={{ width: `${pct}%` }} />
-      </div>
+      <motion.div
+        className="s-loader-wrap"
+        animate={
+          launch
+            ? { x: "44vw", scale: 1.1, opacity: 0.15 }
+            : { x: 0, scale: 1, opacity: 1 }
+        }
+        transition={{ duration: launch ? 0.7 : 0.2, ease: [0.22, 1, 0.36, 1] }}
+        onAnimationComplete={() => {
+          if (!launch || didFinishRef.current) return;
+          didFinishRef.current = true;
+          onDone();
+        }}>
+        <svg
+          className="s-loader-svg"
+          viewBox="0 0 220 300"
+          aria-hidden
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            className="s-loader-base"
+            d="M 180 50 L 164 56 C 148 36 114 30 86 42 C 58 53 48 82 58 104 C 69 126 95 135 120 142 C 146 149 166 156 170 177 C 175 203 157 226 127 236 C 97 246 60 241 39 224 L 50 248"
+          />
+          <motion.path
+            className="s-loader-draw"
+            d="M 180 50 L 164 56 C 148 36 114 30 86 42 C 58 53 48 82 58 104 C 69 126 95 135 120 142 C 146 149 166 156 170 177 C 175 203 157 226 127 236 C 97 246 60 241 39 224 L 50 248"
+            pathLength={drawProgress}
+            style={{ pathLength: drawProgress }}
+          />
+        </svg>
+      </motion.div>
       <p className="mono-value">{String(pct).padStart(3, "0")}%</p>
     </motion.div>
   );
