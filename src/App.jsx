@@ -167,22 +167,13 @@ const references = [
 ];
 
 function Preloader({ onDone }) {
-  const [pct, setPct] = useState(0);
+  const [fadeOut, setFadeOut] = useState(false);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setPct((p) => {
-        if (p >= 100) {
-          clearInterval(timer);
-          return 100;
-        }
-        return p + 2;
-      });
-    }, 40);
-
-    const done = setTimeout(onDone, 2600);
+    const startFade = setTimeout(() => setFadeOut(true), 3500);
+    const done = setTimeout(onDone, 5000);
     return () => {
-      clearInterval(timer);
+      clearTimeout(startFade);
       clearTimeout(done);
     };
   }, [onDone]);
@@ -190,17 +181,32 @@ function Preloader({ onDone }) {
   return (
     <motion.div
       className="preloader"
-      exit={{ opacity: 0, y: "-100%", transition: { duration: 0.8 } }}>
+      initial={{ opacity: 1 }}
+      animate={{ opacity: fadeOut ? 0 : 1 }}
+      transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}>
       <div className="preloader-grid" />
-      <span className="preloader-s" aria-hidden>
-        S
-      </span>
-      <p className="mono-tag">SENUKA PORTFOLIO BOOT</p>
-      <h1 className="brand">SENUKA</h1>
-      <div className="loader-track">
-        <motion.div className="loader-fill" animate={{ width: `${pct}%` }} />
+      <svg
+        className="preloader-svg"
+        viewBox="0 0 220 300"
+        aria-hidden
+        xmlns="http://www.w3.org/2000/svg">
+        <motion.path
+          className="preloader-s-path"
+          d="M 180 50 L 164 56 C 148 36 114 30 86 42 C 58 53 48 82 58 104 C 69 126 95 135 120 142 C 146 149 166 156 170 177 C 175 203 157 226 127 236 C 97 246 60 241 39 224 L 50 248"
+          initial={{ pathLength: 0, opacity: 1 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 3, ease: "easeInOut" }}
+        />
+      </svg>
+      <div className="preloader-name-container">
+        <motion.p
+          className="preloader-logo-name"
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 2, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}>
+          SENUKA
+        </motion.p>
       </div>
-      <p className="mono-value">{String(pct).padStart(3, "0")}%</p>
     </motion.div>
   );
 }

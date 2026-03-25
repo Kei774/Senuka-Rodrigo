@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=Michroma&family=Space+Mono:wght@400;700&display=swap");
 
 :root {
   --ink: #050d1a;
@@ -362,6 +362,7 @@ p {
   display: grid;
   place-content: center;
   text-align: center;
+  gap: 1.5rem;
   background: linear-gradient(150deg, #02070f, #04101d, #071628);
   overflow: hidden;
 }
@@ -376,36 +377,34 @@ p {
   animation: drift 10s linear infinite;
 }
 
-.preloader-s {
-  display: inline-block;
-  margin: 0 auto 16px;
-  font-family: "Bebas Neue", serif;
-  font-size: 3rem;
-  line-height: 1;
-  color: var(--teal);
-  text-shadow: 0 0 18px rgba(45, 212, 191, 0.6);
-  transform: rotate(-8deg);
-  animation: pulse 1.2s ease-in-out infinite;
+.preloader-svg {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
 }
 
-.brand {
-  font-size: clamp(3.4rem, 9vw, 8rem);
-  line-height: 0.95;
+.preloader-s-path {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 12px rgba(45, 212, 191, 0.5));
 }
 
-.loader-track {
-  width: min(320px, 82vw);
-  margin: 14px auto 10px;
-  height: 3px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
+.preloader-name-container {
+  height: 30px;
   overflow: hidden;
 }
 
-.loader-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #0ea5e9, #2dd4bf, #f8fafc);
-  box-shadow: 0 0 18px rgba(45, 212, 191, 0.7);
+.preloader-logo-name {
+  color: #fff;
+  font-size: 20px;
+  letter-spacing: 12px;
+  text-transform: uppercase;
+  margin-left: 12px;
+  font-weight: 700;
+  font-family: "Michroma", "Space Mono", sans-serif;
 }
 
 .mono-tag {
