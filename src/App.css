@@ -376,11 +376,15 @@ p {
   animation: drift 10s linear infinite;
 }
 
-.preloader-heart {
+.preloader-s {
+  display: inline-block;
   margin: 0 auto 16px;
+  font-family: "Bebas Neue", serif;
+  font-size: 3rem;
+  line-height: 1;
   color: var(--teal);
-  width: 42px;
-  height: 42px;
+  text-shadow: 0 0 18px rgba(45, 212, 191, 0.6);
+  transform: rotate(-8deg);
   animation: pulse 1.2s ease-in-out infinite;
 }
 
@@ -485,8 +489,19 @@ main {
   color: rgba(255, 255, 255, 0.9);
 }
 
-.logo-lockup svg {
+.logo-s {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  font-family: "Bebas Neue", serif;
+  font-size: 1rem;
+  line-height: 1;
   color: var(--teal);
+  border: 1px solid rgba(45, 212, 191, 0.45);
+  background: rgba(45, 212, 191, 0.12);
+  box-shadow: 0 0 12px rgba(45, 212, 191, 0.25);
 }
 
 .top-nav nav {

@@ -13,7 +13,6 @@ import {
   CheckCircle2,
   Cloud,
   Cpu,
-  HeartPulse,
   ShieldCheck,
   Sparkles,
   Stethoscope,
@@ -193,7 +192,9 @@ function Preloader({ onDone }) {
       className="preloader"
       exit={{ opacity: 0, y: "-100%", transition: { duration: 0.8 } }}>
       <div className="preloader-grid" />
-      <HeartPulse className="preloader-heart" />
+      <span className="preloader-s" aria-hidden>
+        S
+      </span>
       <p className="mono-tag">SENUKA PORTFOLIO BOOT</p>
       <h1 className="brand">SENUKA</h1>
       <div className="loader-track">
@@ -409,7 +410,9 @@ function App() {
                 onClick={handleLogoNavToggle}
                 aria-expanded={mobileMenuOpen}
                 aria-controls="primary-nav">
-                <HeartPulse size={18} />
+                <span className="logo-s" aria-hidden>
+                  S
+                </span>
                 <span>Senuka Rodrigo</span>
               </button>
               <nav id="primary-nav">
