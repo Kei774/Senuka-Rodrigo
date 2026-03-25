@@ -658,13 +658,7 @@ function App() {
                   Let&apos;s build
                   <span>together.</span>
                 </motion.h2>
-                <div
-                  className="hero-actions"
-                  style={{
-                    flexDirection: "column",
-                    alignItems: "flex-end",
-                    gap: 10,
-                  }}>
+                <div className="hero-actions footer-actions">
                   <a
                     className="btn btn-primary"
                     href="mailto:senukarrodrigo.07@gmail.com">
