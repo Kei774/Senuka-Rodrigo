@@ -338,6 +338,7 @@ function ScrollBackdrop() {
 function App() {
   const [booted, setBooted] = useState(false);
   const [showRoleModal, setShowRoleModal] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const words = useMemo(
     () => ["FULL STACK", "REACT", "NODE.JS", "BACKEND"],
     [],
@@ -354,6 +355,35 @@ function App() {
     }, 1800);
     return () => clearInterval(id);
   }, [booted, words.length]);
+
+  const handleLogoNavToggle = useCallback(() => {
+    if (window.innerWidth > 980) return;
+    setMobileMenuOpen((open) => !open);
+  }, []);
+
+  const handleMobileNavClose = useCallback(() => {
+    setMobileMenuOpen(false);
+  }, []);
+
+  const handleNavItemClick = useCallback(
+    (targetId) => {
+      const target = document.getElementById(targetId);
+      if (!target) {
+        handleMobileNavClose();
+        return;
+      }
+
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      target.scrollIntoView({
+        behavior: reduceMotion ? "auto" : "smooth",
+        block: "start",
+      });
+      handleMobileNavClose();
+    },
+    [handleMobileNavClose],
+  );
 
   return (
     <div className="app-shell">
@@ -372,18 +402,53 @@ function App() {
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.9 }}>
-            <header className="top-nav">
-              <div className="logo-lockup">
+            <header className={`top-nav ${mobileMenuOpen ? "menu-open" : ""}`}>
+              <button
+                type="button"
+                className="logo-lockup"
+                onClick={handleLogoNavToggle}
+                aria-expanded={mobileMenuOpen}
+                aria-controls="primary-nav">
                 <HeartPulse size={18} />
                 <span>Senuka Rodrigo</span>
-              </div>
-              <nav>
-                <a href="#summary">Summary</a>
-                <a href="#projects">Projects</a>
-                <a href="#education">Education</a>
-                <a href="#skills">Skills</a>
-                <a href="#references">References</a>
-                <a href="#contact">Contact</a>
+              </button>
+              <nav id="primary-nav">
+                <button
+                  type="button"
+                  className="nav-link"
+                  onClick={() => handleNavItemClick("summary")}>
+                  Summary
+                </button>
+                <button
+                  type="button"
+                  className="nav-link"
+                  onClick={() => handleNavItemClick("projects")}>
+                  Projects
+                </button>
+                <button
+                  type="button"
+                  className="nav-link"
+                  onClick={() => handleNavItemClick("education")}>
+                  Education
+                </button>
+                <button
+                  type="button"
+                  className="nav-link"
+                  onClick={() => handleNavItemClick("skills")}>
+                  Skills
+                </button>
+                <button
+                  type="button"
+                  className="nav-link"
+                  onClick={() => handleNavItemClick("references")}>
+                  References
+                </button>
+                <button
+                  type="button"
+                  className="nav-link"
+                  onClick={() => handleNavItemClick("contact")}>
+                  Contact
+                </button>
               </nav>
               <button
                 className="btn btn-primary"

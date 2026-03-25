@@ -474,6 +474,10 @@ main {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
   font-family: "Space Mono", monospace;
   text-transform: uppercase;
   font-size: 0.7rem;
@@ -491,7 +495,8 @@ main {
   gap: 3px;
 }
 
-.top-nav nav a {
+.top-nav nav a,
+.top-nav nav .nav-link {
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.15em;
@@ -499,12 +504,16 @@ main {
   color: rgba(255, 255, 255, 0.58);
   padding: 6px 10px;
   border-radius: 999px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
   transition:
     color 0.25s ease,
     background 0.25s ease;
 }
 
-.top-nav nav a:hover {
+.top-nav nav a:hover,
+.top-nav nav .nav-link:hover {
   color: #fff;
   background: rgba(255, 255, 255, 0.08);
 }
@@ -517,6 +526,7 @@ main {
   border: 1px solid rgba(255, 255, 255, 0.08);
   padding: clamp(26px, 4vw, 54px);
   overflow: hidden;
+  scroll-margin-top: 90px;
 }
 
 .hero {
@@ -1146,12 +1156,47 @@ main {
   }
 
   .top-nav {
+    position: sticky;
     gap: 8px;
     padding: 10px;
+    flex-wrap: wrap;
   }
 
   .top-nav nav {
     display: none;
+    width: 100%;
+  }
+
+  .top-nav.menu-open nav {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+    margin-top: 8px;
+    padding: 10px;
+    border-radius: 14px;
+    border: 1px solid rgba(45, 212, 191, 0.25);
+    background: rgba(5, 13, 24, 0.92);
+  }
+
+  .top-nav.menu-open nav a,
+  .top-nav.menu-open nav .nav-link {
+    display: block;
+    padding: 9px 10px;
+    border-radius: 10px;
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    color: rgba(255, 255, 255, 0.82);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .top-nav .btn {
+    margin-left: auto;
+  }
+
+  .top-nav.menu-open .btn {
+    width: 100%;
+    margin-left: 0;
+    justify-content: center;
   }
 
   .hero,
