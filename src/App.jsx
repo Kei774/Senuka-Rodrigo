@@ -366,17 +366,13 @@ function App() {
   }, []);
 
   const handleNavItemClick = useCallback(
-    (event) => {
-      const href = event.currentTarget.getAttribute("href");
-      if (!href || !href.startsWith("#")) return;
-
-      const target = document.querySelector(href);
+    (targetId) => {
+      const target = document.getElementById(targetId);
       if (!target) {
         handleMobileNavClose();
         return;
       }
 
-      event.preventDefault();
       const reduceMotion = window.matchMedia(
         "(prefers-reduced-motion: reduce)",
       ).matches;
@@ -417,24 +413,42 @@ function App() {
                 <span>Senuka Rodrigo</span>
               </button>
               <nav id="primary-nav">
-                <a href="#summary" onClick={handleNavItemClick}>
+                <button
+                  type="button"
+                  className="nav-link"
+                  onClick={() => handleNavItemClick("summary")}>
                   Summary
-                </a>
-                <a href="#projects" onClick={handleNavItemClick}>
+                </button>
+                <button
+                  type="button"
+                  className="nav-link"
+                  onClick={() => handleNavItemClick("projects")}>
                   Projects
-                </a>
-                <a href="#education" onClick={handleNavItemClick}>
+                </button>
+                <button
+                  type="button"
+                  className="nav-link"
+                  onClick={() => handleNavItemClick("education")}>
                   Education
-                </a>
-                <a href="#skills" onClick={handleNavItemClick}>
+                </button>
+                <button
+                  type="button"
+                  className="nav-link"
+                  onClick={() => handleNavItemClick("skills")}>
                   Skills
-                </a>
-                <a href="#references" onClick={handleNavItemClick}>
+                </button>
+                <button
+                  type="button"
+                  className="nav-link"
+                  onClick={() => handleNavItemClick("references")}>
                   References
-                </a>
-                <a href="#contact" onClick={handleNavItemClick}>
+                </button>
+                <button
+                  type="button"
+                  className="nav-link"
+                  onClick={() => handleNavItemClick("contact")}>
                   Contact
-                </a>
+                </button>
               </nav>
               <button
                 className="btn btn-primary"

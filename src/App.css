@@ -495,7 +495,8 @@ main {
   gap: 3px;
 }
 
-.top-nav nav a {
+.top-nav nav a,
+.top-nav nav .nav-link {
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.15em;
@@ -503,12 +504,16 @@ main {
   color: rgba(255, 255, 255, 0.58);
   padding: 6px 10px;
   border-radius: 999px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
   transition:
     color 0.25s ease,
     background 0.25s ease;
 }
 
-.top-nav nav a:hover {
+.top-nav nav a:hover,
+.top-nav nav .nav-link:hover {
   color: #fff;
   background: rgba(255, 255, 255, 0.08);
 }
@@ -1173,7 +1178,8 @@ main {
     background: rgba(5, 13, 24, 0.92);
   }
 
-  .top-nav.menu-open nav a {
+  .top-nav.menu-open nav a,
+  .top-nav.menu-open nav .nav-link {
     display: block;
     padding: 9px 10px;
     border-radius: 10px;
