@@ -26,10 +26,10 @@ import "./App.css";
    Data
 ───────────────────────────────────────── */
 const statCards = [
-  { value: "2024", label: "Started BSc (Hons) Computer Science", },
-  { value: "4+",   label: "Major full stack and frontend projects", },
-  { value: "Full Stack", label: "React, Next.js, Node.js, Java, Python", },
-  { value: "GitHub", label: "Branching, pull requests, and code reviews", },
+  { value: "2024", label: "Started BSc (Hons) Computer Science" },
+  { value: "4+", label: "Major full stack and frontend projects" },
+  { value: "Full Stack", label: "React, Next.js, Node.js, Java, Python" },
+  { value: "GitHub", label: "Branching, pull requests, and code reviews" },
 ];
 
 const projectCards = [
@@ -86,7 +86,8 @@ const projectCards = [
 
 const educationCards = [
   {
-    institute: "University of Westminster, UK (Affiliated with Informatics Institute of Technology)",
+    institute:
+      "University of Westminster, UK (Affiliated with Informatics Institute of Technology)",
     qualification: "BSc (Hons) in Computer Science",
     period: "September 2024 – Present",
   },
@@ -103,13 +104,26 @@ const educationCards = [
 ];
 
 const toolSkills = [
-  "Git", "Microsoft Office", "Documentation Tools", "React",
-  "ClickUp", "Figma", "Next.js", "Node.js", "Java", "Python", "SQL",
+  "Git",
+  "Microsoft Office",
+  "Documentation Tools",
+  "React",
+  "ClickUp",
+  "Figma",
+  "Next.js",
+  "Node.js",
+  "Java",
+  "Python",
+  "SQL",
 ];
 
 const softSkills = [
-  "Leadership", "Communication", "Collaboration",
-  "Fast Learner", "Time Management", "Adaptability",
+  "Leadership",
+  "Communication",
+  "Collaboration",
+  "Fast Learner",
+  "Time Management",
+  "Adaptability",
 ];
 
 const extracurricular = [
@@ -136,10 +150,26 @@ const references = [
 ];
 
 const TICKER_ITEMS = [
-  "Full Stack", "React", "Node.js", "Java", "Python",
-  "GitHub", "Sri Lanka", "Next.js", "SQL", "Figma",
-  "Full Stack", "React", "Node.js", "Java", "Python",
-  "GitHub", "Sri Lanka", "Next.js", "SQL", "Figma",
+  "Full Stack",
+  "React",
+  "Node.js",
+  "Java",
+  "Python",
+  "GitHub",
+  "Sri Lanka",
+  "Next.js",
+  "SQL",
+  "Figma",
+  "Full Stack",
+  "React",
+  "Node.js",
+  "Java",
+  "Python",
+  "GitHub",
+  "Sri Lanka",
+  "Next.js",
+  "SQL",
+  "Figma",
 ];
 
 /* ─────────────────────────────────────────
@@ -158,12 +188,18 @@ function Preloader({ onDone }) {
   useEffect(() => {
     const timer = setInterval(() => {
       setPct((p) => {
-        if (p >= 100) { clearInterval(timer); return 100; }
+        if (p >= 100) {
+          clearInterval(timer);
+          return 100;
+        }
         return p + 2;
       });
     }, 40);
     const done = setTimeout(onDone, 2600);
-    return () => { clearInterval(timer); clearTimeout(done); };
+    return () => {
+      clearInterval(timer);
+      clearTimeout(done);
+    };
   }, [onDone]);
 
   return (
@@ -189,20 +225,23 @@ function MedicalCursor() {
   useEffect(() => {
     const onMove = (e) => setPos({ x: e.clientX, y: e.clientY });
     const onDown = () => setActive(true);
-    const onUp   = () => setActive(false);
+    const onUp = () => setActive(false);
     window.addEventListener("mousemove", onMove);
     window.addEventListener("mousedown", onDown);
-    window.addEventListener("mouseup",   onUp);
+    window.addEventListener("mouseup", onUp);
     return () => {
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mousedown", onDown);
-      window.removeEventListener("mouseup",   onUp);
+      window.removeEventListener("mouseup", onUp);
     };
   }, []);
 
   return (
     <>
-      <div className={`cursor-ring ${active ? "cursor-active" : ""}`} style={{ left: pos.x, top: pos.y }} />
+      <div
+        className={`cursor-ring ${active ? "cursor-active" : ""}`}
+        style={{ left: pos.x, top: pos.y }}
+      />
       <div className="cursor-dot" style={{ left: pos.x, top: pos.y }} />
     </>
   );
@@ -212,18 +251,33 @@ function RoleModal({ open, onClose }) {
   if (!open) return null;
   return (
     <AnimatePresence>
-      <motion.div className="modal-wrap" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-        <button className="modal-backdrop" aria-label="Close" onClick={onClose} />
+      <motion.div
+        className="modal-wrap"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}>
+        <button
+          className="modal-backdrop"
+          aria-label="Close"
+          onClick={onClose}
+        />
         <motion.div
           className="modal-card"
           initial={{ opacity: 0, y: 24, scale: 0.96 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 24, scale: 0.96 }}>
-          <button className="icon-btn" onClick={onClose} aria-label="Close modal"><X size={18} /></button>
+          <button
+            className="icon-btn"
+            onClick={onClose}
+            aria-label="Close modal">
+            <X size={18} />
+          </button>
           <p className="mono-tag">Quick Contact</p>
           <h3>Get in touch</h3>
           <div className="modal-grid">
-            <a className="role-card role-patient" href="mailto:senukarrodrigo.07@gmail.com">
+            <a
+              className="role-card role-patient"
+              href="mailto:senukarrodrigo.07@gmail.com">
               <Activity size={24} />
               <strong>Email</strong>
               <span>senukarrodrigo.07@gmail.com</span>
@@ -246,7 +300,8 @@ function Marquee() {
       <div className="ticker-track">
         {TICKER_ITEMS.map((item, i) => (
           <span key={i} className="ticker-item">
-            {item}<span className="tick-dot">•</span>
+            {item}
+            <span className="tick-dot">•</span>
           </span>
         ))}
       </div>
@@ -256,7 +311,11 @@ function Marquee() {
 
 function ScrollBackdrop() {
   const { scrollYProgress } = useScroll();
-  const smooth = useSpring(scrollYProgress, { stiffness: 88, damping: 24, mass: 0.4 });
+  const smooth = useSpring(scrollYProgress, {
+    stiffness: 88,
+    damping: 24,
+    mass: 0.4,
+  });
 
   const orbAY = useTransform(smooth, [0, 1], [0, 380]);
   const orbAX = useTransform(smooth, [0, 1], [0, -140]);
@@ -265,18 +324,31 @@ function ScrollBackdrop() {
   const orbBX = useTransform(smooth, [0, 1], [0, 110]);
   const orbBS = useTransform(smooth, [0, 1], [1, 1.2]);
   const sweepY = useTransform(smooth, [0, 1], ["-20%", "120%"]);
-  const sweepO = useTransform(smooth, [0, 0.12, 0.92, 1], [0.2, 0.48, 0.48, 0.25]);
+  const sweepO = useTransform(
+    smooth,
+    [0, 0.12, 0.92, 1],
+    [0.2, 0.48, 0.48, 0.25],
+  );
 
   // Signature draw progress
-  const sigProgress       = useTransform(smooth, [0, 0.88], [0, 1]);
+  const sigProgress = useTransform(smooth, [0, 0.88], [0, 1]);
   const underlineProgress = useTransform(smooth, [0.72, 0.96], [0, 1]);
-  const dotOpacity        = useTransform(smooth, [0.38, 0.48], [0, 1]);
+  const dotOpacity = useTransform(smooth, [0.38, 0.48], [0, 1]);
 
   return (
     <div className="scroll-bg" aria-hidden>
-      <motion.div className="scroll-orb scroll-orb-a" style={{ y: orbAY, x: orbAX, scale: orbAS }} />
-      <motion.div className="scroll-orb scroll-orb-b" style={{ y: orbBY, x: orbBX, scale: orbBS }} />
-      <motion.div className="scroll-sweep" style={{ y: sweepY, opacity: sweepO }} />
+      <motion.div
+        className="scroll-orb scroll-orb-a"
+        style={{ y: orbAY, x: orbAX, scale: orbAS }}
+      />
+      <motion.div
+        className="scroll-orb scroll-orb-b"
+        style={{ y: orbBY, x: orbBX, scale: orbBS }}
+      />
+      <motion.div
+        className="scroll-sweep"
+        style={{ y: sweepY, opacity: sweepO }}
+      />
 
       {/* Scroll-driven signature */}
       <div className="signature-rail signature-rail-left">
@@ -292,10 +364,15 @@ function ScrollBackdrop() {
             style={{ pathLength: sigProgress }}
           />
           <motion.circle
-            cx="740" cy="66" r="7"
-            fill="rgba(255,120,0,0.82)"
+            cx="740"
+            cy="66"
+            r="7"
+            fill="rgba(134,120,255,0.86)"
             stroke="none"
-            style={{ opacity: dotOpacity, filter: "drop-shadow(0 0 9px rgba(255,110,0,0.44))" }}
+            style={{
+              opacity: dotOpacity,
+              filter: "drop-shadow(0 0 9px rgba(122,108,255,0.52))",
+            }}
           />
           <motion.path
             className="signature-path signature-path-underline"
@@ -313,16 +390,22 @@ function ScrollBackdrop() {
    App
 ───────────────────────────────────────── */
 function App() {
-  const [booted, setBooted]           = useState(false);
+  const [booted, setBooted] = useState(false);
   const [showRoleModal, setShowRoleModal] = useState(false);
-  const [navSolid, setNavSolid]       = useState(false);
-  const words = useMemo(() => ["FULL STACK", "REACT", "NODE.JS", "BACKEND"], []);
-  const [wordIndex, setWordIndex]     = useState(0);
+  const [navSolid, setNavSolid] = useState(false);
+  const words = useMemo(
+    () => ["FULL STACK", "REACT", "NODE.JS", "BACKEND"],
+    [],
+  );
+  const [wordIndex, setWordIndex] = useState(0);
   const handleBootDone = useCallback(() => setBooted(true), []);
 
   useEffect(() => {
     if (!booted) return;
-    const id = setInterval(() => setWordIndex((i) => (i + 1) % words.length), 1800);
+    const id = setInterval(
+      () => setWordIndex((i) => (i + 1) % words.length),
+      1800,
+    );
     return () => clearInterval(id);
   }, [booted, words.length]);
 
@@ -332,8 +415,20 @@ function App() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const fade   = { hidden: { opacity: 0, y: 22 }, show: { opacity: 1, y: 0, transition: { duration: 0.66, ease: [0.22,1,0.36,1] } } };
-  const fadeUp = (delay = 0) => ({ initial: { opacity:0, y:20 }, whileInView: { opacity:1, y:0 }, viewport: { once: true }, transition: { duration: 0.6, ease:[0.22,1,0.36,1], delay } });
+  const fade = {
+    hidden: { opacity: 0, y: 22 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.66, ease: [0.22, 1, 0.36, 1] },
+    },
+  };
+  const fadeUp = (delay = 0) => ({
+    initial: { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1], delay },
+  });
 
   return (
     <div className="app-shell">
@@ -348,8 +443,10 @@ function App() {
 
       <AnimatePresence>
         {booted && (
-          <motion.main initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.7 }}>
-
+          <motion.main
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7 }}>
             {/* ── Nav ── */}
             <header className={`top-nav ${navSolid ? "nav-solid" : ""}`}>
               <div className="logo-lockup">
@@ -364,29 +461,45 @@ function App() {
                 <a href="#references">References</a>
                 <a href="#contact">Contact</a>
               </nav>
-              <button className="btn btn-primary" onClick={() => setShowRoleModal(true)}>
+              <button
+                className="btn btn-primary"
+                onClick={() => setShowRoleModal(true)}>
                 Quick Contact
               </button>
             </header>
 
             {/* ── Hero ── */}
             <section className="hero">
-              <motion.p className="hero-eyebrow" variants={fade} initial="hidden" animate="show">
+              <motion.p
+                className="hero-eyebrow"
+                variants={fade}
+                initial="hidden"
+                animate="show">
                 Full Stack Developer — Kaluthara, Sri Lanka
               </motion.p>
-              <motion.h1 variants={fade} initial="hidden" animate="show" transition={{ delay: 0.08 }}>
+              <motion.h1
+                variants={fade}
+                initial="hidden"
+                animate="show"
+                transition={{ delay: 0.08 }}>
                 SENUKA<span>RODRIGO.</span>
               </motion.h1>
               <motion.div
                 className="hero-bottom"
-                variants={fade} initial="hidden" animate="show" transition={{ delay: 0.18 }}>
+                variants={fade}
+                initial="hidden"
+                animate="show"
+                transition={{ delay: 0.18 }}>
                 <p className="hero-copy">
-                  Motivated Software Engineering undergraduate with practical experience
-                  building web applications and backend systems. Worked with React, Next.js,
-                  Node.js, Java, and Python using modern development workflows.
+                  Motivated Software Engineering undergraduate with practical
+                  experience building web applications and backend systems.
+                  Worked with React, Next.js, Node.js, Java, and Python using
+                  modern development workflows.
                 </p>
                 <div className="hero-actions">
-                  <a className="btn btn-primary" href="mailto:senukarrodrigo.07@gmail.com">
+                  <a
+                    className="btn btn-primary"
+                    href="mailto:senukarrodrigo.07@gmail.com">
                     Email Me <ArrowRight size={14} />
                   </a>
                   <a className="btn btn-ghost" href="tel:+94773847510">
@@ -402,18 +515,23 @@ function App() {
 
             {/* ── Summary ── */}
             <section id="summary" className="section">
-              <motion.p className="section-num" {...fadeUp()}>01 — Summary</motion.p>
+              <motion.p className="section-num" {...fadeUp()}>
+                01 — Summary
+              </motion.p>
               <motion.h2 {...fadeUp(0.06)}>
                 Building products with practical team execution.
               </motion.h2>
               <motion.p className="summary-copy" {...fadeUp(0.1)}>
                 Experienced in Git-based team collaboration, version control,
-                and component-based frontend development with hands-on backend project experience.
-                Specialises in {words[wordIndex]}.
+                and component-based frontend development with hands-on backend
+                project experience. Specialises in {words[wordIndex]}.
               </motion.p>
               <div className="stats-row">
                 {statCards.map((card, i) => (
-                  <motion.div key={card.label} className="stat-item" {...fadeUp(i * 0.07)}>
+                  <motion.div
+                    key={card.label}
+                    className="stat-item"
+                    {...fadeUp(i * 0.07)}>
                     <h3>{card.value}</h3>
                     <p>{card.label}</p>
                   </motion.div>
@@ -423,25 +541,42 @@ function App() {
 
             {/* ── Projects ── */}
             <section id="projects" className="section section-alt">
-              <motion.p className="section-num" {...fadeUp()}>02 — Projects</motion.p>
-              <motion.h2 {...fadeUp(0.06)}>Full stack and frontend systems.</motion.h2>
+              <motion.p className="section-num" {...fadeUp()}>
+                02 — Projects
+              </motion.p>
+              <motion.h2 {...fadeUp(0.06)}>
+                Full stack and frontend systems.
+              </motion.h2>
               <div className="projects-list">
                 {projectCards.map((item, i) => (
-                  <motion.div key={item.title} className="project-row" {...fadeUp(i * 0.07)}>
+                  <motion.div
+                    key={item.title}
+                    className="project-row"
+                    {...fadeUp(i * 0.07)}>
                     <span className="project-num">0{i + 1}</span>
                     <div className="project-body">
                       <h3>{item.title}</h3>
                       <p className="stack-line">{item.stack}</p>
                       <p>{item.text}</p>
                       <ul className="bullet-list">
-                        {item.points.map((pt) => <li key={pt}>{pt}</li>)}
+                        {item.points.map((pt) => (
+                          <li key={pt}>{pt}</li>
+                        ))}
                       </ul>
                     </div>
                     <div className="project-meta">
-                      <a className="repo-link" href={item.repo} target="_blank" rel="noreferrer">
+                      <a
+                        className="repo-link"
+                        href={item.repo}
+                        target="_blank"
+                        rel="noreferrer">
                         View Repo
                       </a>
-                      <a className="project-arrow" href={item.repo} target="_blank" rel="noreferrer">
+                      <a
+                        className="project-arrow"
+                        href={item.repo}
+                        target="_blank"
+                        rel="noreferrer">
                         →
                       </a>
                     </div>
@@ -452,8 +587,12 @@ function App() {
 
             {/* ── Education ── */}
             <section id="education" className="section">
-              <motion.p className="section-num" {...fadeUp()}>03 — Education</motion.p>
-              <motion.h2 {...fadeUp(0.06)}>Academic and technical foundation.</motion.h2>
+              <motion.p className="section-num" {...fadeUp()}>
+                03 — Education
+              </motion.p>
+              <motion.h2 {...fadeUp(0.06)}>
+                Academic and technical foundation.
+              </motion.h2>
               <div className="edu-grid">
                 {educationCards.map((edu) => (
                   <div key={edu.institute} className="edu-card">
@@ -468,9 +607,9 @@ function App() {
                   <h3>Java Programming</h3>
                   <p className="stack-line">2025 • Distinction</p>
                   <p>
-                    Completed a structured programme on core Java development and
-                    object-oriented design principles, including encapsulation,
-                    inheritance, polymorphism, and abstraction.
+                    Completed a structured programme on core Java development
+                    and object-oriented design principles, including
+                    encapsulation, inheritance, polymorphism, and abstraction.
                   </p>
                 </div>
               </div>
@@ -478,20 +617,32 @@ function App() {
 
             {/* ── Skills ── */}
             <section id="skills" className="section section-alt">
-              <motion.p className="section-num" {...fadeUp()}>04 — Skills &amp; Activities</motion.p>
-              <motion.h2 {...fadeUp(0.06)}>Technical, soft skills, and extracurricular.</motion.h2>
+              <motion.p className="section-num" {...fadeUp()}>
+                04 — Skills &amp; Activities
+              </motion.p>
+              <motion.h2 {...fadeUp(0.06)}>
+                Technical, soft skills, and extracurricular.
+              </motion.h2>
               <div className="skills-split">
                 <div>
                   <div className="skills-col">
                     <h3>Tools &amp; Technologies</h3>
                     <div className="chip-list">
-                      {toolSkills.map((item) => <span key={item} className="chip-item">{item}</span>)}
+                      {toolSkills.map((item) => (
+                        <span key={item} className="chip-item">
+                          {item}
+                        </span>
+                      ))}
                     </div>
                   </div>
                   <div className="skills-col">
                     <h3>Soft Skills</h3>
                     <div className="chip-list">
-                      {softSkills.map((item) => <span key={item} className="chip-item">{item}</span>)}
+                      {softSkills.map((item) => (
+                        <span key={item} className="chip-item">
+                          {item}
+                        </span>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -499,14 +650,22 @@ function App() {
                   <div className="skills-col">
                     <h3>Extracurricular</h3>
                     <ul className="bullet-list">
-                      {extracurricular.map((item) => <li key={item}>{item}</li>)}
+                      {extracurricular.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
                     </ul>
                   </div>
                   <div className="skills-col">
                     <h3>Professional Focus</h3>
-                    <p style={{ color: "var(--muted)", lineHeight: 1.7, fontSize: "0.95rem" }}>
-                      Continuing to strengthen full stack development across frontend architecture,
-                      backend systems, team collaboration, and software delivery workflows.
+                    <p
+                      style={{
+                        color: "var(--muted)",
+                        lineHeight: 1.7,
+                        fontSize: "0.95rem",
+                      }}>
+                      Continuing to strengthen full stack development across
+                      frontend architecture, backend systems, team
+                      collaboration, and software delivery workflows.
                     </p>
                   </div>
                 </div>
@@ -515,11 +674,18 @@ function App() {
 
             {/* ── References ── */}
             <section id="references" className="section">
-              <motion.p className="section-num" {...fadeUp()}>05 — References</motion.p>
-              <motion.h2 {...fadeUp(0.06)}>Academic and industry references.</motion.h2>
+              <motion.p className="section-num" {...fadeUp()}>
+                05 — References
+              </motion.p>
+              <motion.h2 {...fadeUp(0.06)}>
+                Academic and industry references.
+              </motion.h2>
               <div className="ref-grid">
                 {references.map((ref, i) => (
-                  <motion.div key={ref.email} className="ref-card" {...fadeUp(i * 0.08)}>
+                  <motion.div
+                    key={ref.email}
+                    className="ref-card"
+                    {...fadeUp(i * 0.08)}>
                     <CheckCircle2 size={22} />
                     <h3>{ref.name}</h3>
                     <p>{ref.role}</p>
@@ -538,15 +704,33 @@ function App() {
                   Let&apos;s build
                   <span>together.</span>
                 </motion.h2>
-                <div className="hero-actions" style={{ flexDirection: "column", alignItems: "flex-end", gap: 10 }}>
-                  <a className="btn btn-primary" href="mailto:senukarrodrigo.07@gmail.com">
+                <div
+                  className="hero-actions"
+                  style={{
+                    flexDirection: "column",
+                    alignItems: "flex-end",
+                    gap: 10,
+                  }}>
+                  <a
+                    className="btn btn-primary"
+                    href="mailto:senukarrodrigo.07@gmail.com">
                     Email Me <ArrowRight size={14} />
                   </a>
-                  <a className="btn btn-ghost" href="tel:+94773847510">Call Me</a>
-                  <a className="btn btn-ghost" href="http://www.linkedin.com/in/senuka-rodrigo" target="_blank" rel="noreferrer">
+                  <a className="btn btn-ghost" href="tel:+94773847510">
+                    Call Me
+                  </a>
+                  <a
+                    className="btn btn-ghost"
+                    href="http://www.linkedin.com/in/senuka-rodrigo"
+                    target="_blank"
+                    rel="noreferrer">
                     LinkedIn
                   </a>
-                  <a className="btn btn-ghost" href="https://github.com/Kei774" target="_blank" rel="noreferrer">
+                  <a
+                    className="btn btn-ghost"
+                    href="https://github.com/Kei774"
+                    target="_blank"
+                    rel="noreferrer">
                     GitHub
                   </a>
                 </div>
@@ -557,7 +741,6 @@ function App() {
                 <p>© 2025 Senuka Rodrigo</p>
               </div>
             </footer>
-
           </motion.main>
         )}
       </AnimatePresence>
